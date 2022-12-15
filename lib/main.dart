@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       theme: ThemeData.dark(),
-      home: Scaffold(
-        body: const Mainpage(),
+      home: const Scaffold(
+        body: Mainpage(),
       ),
     );
   }

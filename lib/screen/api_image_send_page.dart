@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Solution extends StatefulWidget {
+  const Solution({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Solution> createState() => _SolutionState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SolutionState extends State<Solution> {
   File? selectedImage;
   String message = '';
 

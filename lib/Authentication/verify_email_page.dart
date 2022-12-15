@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jit_gaye_hackathon/Authentication/utils.dart';
-import 'package:jit_gaye_hackathon/homepage.dart';
+import 'package:jit_gaye_hackathon/screen/api_image_send_page.dart';
+import 'package:jit_gaye_hackathon/screen/front%20screen.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -59,7 +60,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? const Homepage()
+      ? HomeScreen()
       : Scaffold(
           appBar: AppBar(title: Text('Verify Email')),
           body: Padding(
