@@ -9,7 +9,7 @@ class Profile extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(32),

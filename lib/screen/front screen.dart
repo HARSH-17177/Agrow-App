@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               NavigationDestination(
                   selectedIcon: Icon(Icons.person),
                   icon: Icon(Icons.person_outlined),
-                  label: 'News'),
+                  label: 'Profile'),
             ],
           )),
       body: Center(child: pages[_currentIndex]),

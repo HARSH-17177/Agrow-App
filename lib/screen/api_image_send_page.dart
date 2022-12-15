@@ -43,7 +43,7 @@ class _SolutionState extends State<Solution> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flask_image_test"),
+        title: const Text("Solution"),
       ),
       body: Center(
         child: Column(
