@@ -18,7 +18,7 @@ class _SolutionState extends State<Solution> {
 
   uploadImage() async {
     final request = http.MultipartRequest(
-        "POST", Uri.parse("https://6766-14-99-167-142.in.ngrok.io/upload"));
+        "POST", Uri.parse("https://596c-103-215-237-250.in.ngrok.io/upload"));
     final headers = {"Content-type": "multipart/form-data"};
     request.files.add(http.MultipartFile('image',
         selectedImage!.readAsBytes().asStream(), selectedImage!.lengthSync(),
