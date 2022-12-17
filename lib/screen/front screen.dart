@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jit_gaye_hackathon/screen/discussion_room.dart';
+import 'package:jit_gaye_hackathon/screen/buyer_seller/discussion_room.dart';
 import 'package:jit_gaye_hackathon/screen/image_send/image_send.dart';
 import 'package:jit_gaye_hackathon/screen/latest_news.dart';
 import 'package:jit_gaye_hackathon/screen/profile.dart';

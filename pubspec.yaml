@@ -45,6 +45,7 @@ dependencies:
   cloud_firestore:
   email_validator:
   fluttertoast:
+  
 
 dev_dependencies:
   flutter_test:
