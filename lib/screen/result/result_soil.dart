@@ -50,7 +50,7 @@ class ResultSoil extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  dis1,
+                  dis2,
                   style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -68,7 +68,7 @@ class ResultSoil extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  dis1,
+                  dis3,
                   style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
