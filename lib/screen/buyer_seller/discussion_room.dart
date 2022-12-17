@@ -118,7 +118,7 @@ class ItemList extends StatelessWidget {
                                         width: 10,
                                       ),
                                       Text(
-                                        'Join the Group',
+                                        'Contact us',
                                         style: TextStyle(
                                             fontSize: 20, color: Colors.white),
                                       ),
