@@ -81,10 +81,8 @@ class ItemList extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  await canLaunchUrl(
-                                          Uri.parse('${thisItem['url']}'))
-                                      ? launchUrl(
-                                          Uri.parse('${thisItem['url']}'))
+                                  await canLaunch('${thisItem['url']}')
+                                      ? launch('${thisItem['url']}')
                                       : print('Cant Open url');
                                 },
                                 child: Container(
