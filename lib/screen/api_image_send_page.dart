@@ -14,10 +14,13 @@ class Solution extends StatefulWidget {
 }
 
 class _SolutionState extends State<Solution> {
+  bool dataThere = true;
   File? selectedImage;
   String message = '';
 
   uploadImage() async {
+    dataThere = false;
+    setState(() {});
     final request = http.MultipartRequest(
         "POST", Uri.parse("https://e984-103-169-236-82.in.ngrok.io/upload"));
     final headers = {"Content-type": "multipart/form-data"};
@@ -29,7 +32,9 @@ class _SolutionState extends State<Solution> {
     http.Response res = await http.Response.fromStream(response);
     final resJson = jsonDecode(res.body);
 
-    setState(() {});
+    setState(() {
+      dataThere = true;
+    });
     // print(resJson);
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => Result(
@@ -52,28 +57,31 @@ class _SolutionState extends State<Solution> {
       appBar: AppBar(
         title: const Text("Solution"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            selectedImage == null
-                ? const Text("Please pick a image to upload")
-                : Image.file(selectedImage!),
-            TextButton.icon(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue)),
-                onPressed: uploadImage,
-                icon: const Icon(
-                  Icons.upload_file,
-                  color: Colors.white,
-                ),
-                label: const Text(
-                  "Upload",
-                  style: TextStyle(color: Colors.white),
-                ))
-          ],
-        ),
-      ),
+      body: (dataThere == false)
+          ? const Center(child: CircularProgressIndicator())
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  selectedImage == null
+                      ? const Text("Please pick a image to upload")
+                      : Image.file(selectedImage!),
+                  TextButton.icon(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue)),
+                      onPressed: uploadImage,
+                      icon: const Icon(
+                        Icons.upload_file,
+                        color: Colors.white,
+                      ),
+                      label: const Text(
+                        "Upload",
+                        style: TextStyle(color: Colors.white),
+                      ))
+                ],
+              ),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
         child: const Icon(Icons.add_a_photo),

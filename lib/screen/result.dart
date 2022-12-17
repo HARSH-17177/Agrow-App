@@ -13,6 +13,8 @@ class Result extends StatelessWidget {
       ),
       body: Center(
         child: Container(
+          height: 400,
+          width: 400,
           margin: const EdgeInsets.all(35),
           padding: const EdgeInsets.all(12),
           decoration: const BoxDecoration(color: Colors.white),
