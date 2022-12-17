@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jit_gaye_hackathon/discussionPage/Landing.dart';
 import 'package:jit_gaye_hackathon/screen/api_image_send_page.dart';
 import 'package:jit_gaye_hackathon/screen/discussion_room.dart';
 import 'package:jit_gaye_hackathon/screen/latest_news.dart';
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pages = [
     const Solution(),
     const LatestNews(),
-    const DiscussionRoom(),
+    const LandingPAge(),
     const Profile(),
   ];
 
