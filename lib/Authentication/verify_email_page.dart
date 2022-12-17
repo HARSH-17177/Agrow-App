@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jit_gaye_hackathon/Authentication/utils.dart';
-import 'package:jit_gaye_hackathon/screen/api_image_send_page.dart';
+import 'package:jit_gaye_hackathon/screen/image_send/api_image_send_page.dart';
 import 'package:jit_gaye_hackathon/screen/front%20screen.dart';
 
 class VerifyEmailPage extends StatefulWidget {

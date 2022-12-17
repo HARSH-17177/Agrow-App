@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jit_gaye_hackathon/discussionPage/Landing.dart';
-import 'package:jit_gaye_hackathon/discussionPage/signup.dart';
-import 'package:jit_gaye_hackathon/screen/api_image_send_page.dart';
 import 'package:jit_gaye_hackathon/screen/discussion_room.dart';
+import 'package:jit_gaye_hackathon/screen/image_send/image_send.dart';
 import 'package:jit_gaye_hackathon/screen/latest_news.dart';
 import 'package:jit_gaye_hackathon/screen/profile.dart';
 
@@ -15,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   List<Widget> pages = [
-    const Solution(),
+    const ImageSendOption(),
     const LatestNews(),
     const DiscussionRoom(),
     const Profile(),
