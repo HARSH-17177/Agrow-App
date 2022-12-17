@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jit_gaye_hackathon/screen/buyer_seller/add_post.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,7 +48,21 @@ class ItemList extends StatelessWidget {
                   //REturn the widget for the list items
 
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Card(
+                        elevation: 10,
+                        shadowColor: Colors.greenAccent,
+                        color: Colors.green,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text('${thisItem['user']}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white)),
+                        ),
+                      ),
                       Card(
                         elevation: 10,
                         shadowColor: Colors.greenAccent,

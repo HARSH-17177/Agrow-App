@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EditItem extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser!;
+
   EditItem(this._shoppingItem, {Key? key}) {
     _controllerName = TextEditingController(text: _shoppingItem['name']);
     _controllerQuantity =

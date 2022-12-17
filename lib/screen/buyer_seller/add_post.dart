@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,6 +15,8 @@ class AddItem extends StatefulWidget {
 
 class _AddItemState extends State<AddItem> {
   bool loading = false;
+  final user = FirebaseAuth.instance.currentUser!;
+
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerQuantity = TextEditingController();
   TextEditingController _controllerUrl = TextEditingController();
@@ -142,6 +145,7 @@ class _AddItemState extends State<AddItem> {
 
                       //Create a Map of data
                       Map<String, String> dataToSend = {
+                        'user': user.email.toString(),
                         'name': itemName,
                         'quantity': itemQuantity,
                         'url': url,
