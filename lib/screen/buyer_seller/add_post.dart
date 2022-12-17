@@ -15,7 +15,7 @@ class AddItem extends StatefulWidget {
 
 class _AddItemState extends State<AddItem> {
   bool loading = false;
-  final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser!.email.toString();
 
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerQuantity = TextEditingController();
@@ -145,7 +145,7 @@ class _AddItemState extends State<AddItem> {
 
                       //Create a Map of data
                       Map<String, String> dataToSend = {
-                        'user': user.email.toString(),
+                        'user': user,
                         'name': itemName,
                         'quantity': itemQuantity,
                         'url': url,
