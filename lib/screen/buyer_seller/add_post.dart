@@ -13,6 +13,7 @@ class AddItem extends StatefulWidget {
 }
 
 class _AddItemState extends State<AddItem> {
+  bool loading = false;
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerQuantity = TextEditingController();
   TextEditingController _controllerUrl = TextEditingController();
@@ -121,17 +122,20 @@ class _AddItemState extends State<AddItem> {
                       //Some error occurred
                     }
                   },
-                  icon: Icon(Icons.camera_alt)),
+                  icon: const Icon(Icons.camera_alt)),
               ElevatedButton(
                   onPressed: () async {
                     if (imageUrl.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Please upload an image')));
-
+                      setState(() {
+                        loading = true;
+                      });
                       return;
                     }
 
                     if (key.currentState!.validate()) {
+                      setState(() {
+                        loading = false;
+                      });
                       String itemName = _controllerName.text;
                       String itemQuantity = _controllerQuantity.text;
                       String url = _controllerUrl.text;
@@ -149,7 +153,13 @@ class _AddItemState extends State<AddItem> {
                       Navigator.pop(context);
                     }
                   },
-                  child: Text('Submit'))
+                  child: const Text('Submit')),
+              const SizedBox(
+                height: 40,
+              ),
+              (loading == true)
+                  ? const CircularProgressIndicator()
+                  : Container(),
             ],
           ),
         ),
