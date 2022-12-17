@@ -115,7 +115,7 @@ class _AddItemState extends State<AddItem> {
                     //Handle errors/success
                     try {
                       //Store the file
-                      await referenceImageToUpload.putFile(File(file!.path));
+                      await referenceImageToUpload.putFile(File(file.path));
                       //Success: get the download URL
                       imageUrl = await referenceImageToUpload.getDownloadURL();
                     } catch (error) {
