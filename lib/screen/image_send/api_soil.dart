@@ -23,7 +23,7 @@ class _SoilState extends State<Soil> {
     dataThere = false;
     setState(() {});
     final request = http.MultipartRequest(
-        "PUT", Uri.parse("https://d756-103-169-236-82.in.ngrok.io/npk"));
+        "PUT", Uri.parse("https://c437-103-169-236-82.in.ngrok.io/npk"));
     final headers = {"Content-type": "multipart/form-data"};
     request.files.add(http.MultipartFile('image',
         selectedImage!.readAsBytes().asStream(), selectedImage!.lengthSync(),

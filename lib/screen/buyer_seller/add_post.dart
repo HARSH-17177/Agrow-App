@@ -136,9 +136,6 @@ class _AddItemState extends State<AddItem> {
                     }
 
                     if (key.currentState!.validate()) {
-                      setState(() {
-                        loading = false;
-                      });
                       String itemName = _controllerName.text;
                       String itemQuantity = _controllerQuantity.text;
                       String url = _controllerUrl.text;
@@ -154,6 +151,9 @@ class _AddItemState extends State<AddItem> {
 
                       //Add a new item
                       _reference.add(dataToSend);
+                      setState(() {
+                        loading = false;
+                      });
                       Navigator.pop(context);
                     }
                   },

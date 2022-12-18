@@ -22,7 +22,7 @@ class _SolutionState extends State<Solution> {
     dataThere = false;
     setState(() {});
     final request = http.MultipartRequest(
-        "POST", Uri.parse("https://d756-103-169-236-82.in.ngrok.io/upload"));
+        "POST", Uri.parse("https://c437-103-169-236-82.in.ngrok.io/upload"));
     final headers = {"Content-type": "multipart/form-data"};
     request.files.add(http.MultipartFile('image',
         selectedImage!.readAsBytes().asStream(), selectedImage!.lengthSync(),
