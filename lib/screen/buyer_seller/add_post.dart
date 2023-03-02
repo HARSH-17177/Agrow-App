@@ -23,8 +23,8 @@ class _AddItemState extends State<AddItem> {
 
   GlobalKey<FormState> key = GlobalKey();
 
-  CollectionReference _reference =
-      FirebaseFirestore.instance.collection('shopping_list');
+  final CollectionReference _reference =
+      FirebaseFirestore.instance.collection('items');
 
   String imageUrl = '';
 
@@ -98,15 +98,7 @@ class _AddItemState extends State<AddItem> {
                     print('${file?.path}');
 
                     if (file == null) return;
-                    //Import dart:core
-                    String uniqueFileName =
-                        DateTime.now().millisecondsSinceEpoch.toString();
 
-                    /*Step 2: Upload to Firebase storage*/
-                    //Install firebase_storage
-                    //Import the library
-
-                    //Get a reference to storage root
                     Reference referenceRoot = FirebaseStorage.instance.ref();
                     Reference referenceDirImages =
                         referenceRoot.child('images');
@@ -114,13 +106,25 @@ class _AddItemState extends State<AddItem> {
                     //Create a reference for the image to be stored
                     Reference referenceImageToUpload =
                         referenceDirImages.child('name');
-
+                    if (imageUrl.isEmpty) {
+                      setState(() {
+                        loading = true;
+                      });
+                    }
                     //Handle errors/success
                     try {
+                      UploadTask task =
+                          referenceImageToUpload.putFile(File(file.path));
                       //Store the file
-                      await referenceImageToUpload.putFile(File(file.path));
+
                       //Success: get the download URL
-                      imageUrl = await referenceImageToUpload.getDownloadURL();
+                      task.whenComplete(() async {
+                        imageUrl =
+                            await referenceImageToUpload.getDownloadURL();
+                        setState(() {
+                          loading = false;
+                        });
+                      });
                     } catch (error) {
                       //Some error occurred
                     }
@@ -128,17 +132,10 @@ class _AddItemState extends State<AddItem> {
                   icon: const Icon(Icons.camera_alt)),
               ElevatedButton(
                   onPressed: () async {
-                    if (imageUrl.isEmpty) {
-                      setState(() {
-                        loading = true;
-                      });
-                      return;
-                    }
-
                     if (key.currentState!.validate()) {
                       String itemName = _controllerName.text;
                       String itemQuantity = _controllerQuantity.text;
-                      String url = _controllerUrl.text;
+                      String url = "https://wa.me/+91${_controllerUrl.text}";
 
                       //Create a Map of data
                       Map<String, String> dataToSend = {
@@ -147,13 +144,12 @@ class _AddItemState extends State<AddItem> {
                         'quantity': itemQuantity,
                         'url': url,
                         'image': imageUrl,
+                        'timestamp': DateTime.now().toString(),
                       };
 
                       //Add a new item
                       _reference.add(dataToSend);
-                      setState(() {
-                        loading = false;
-                      });
+
                       Navigator.pop(context);
                     }
                   },

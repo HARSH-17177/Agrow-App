@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jit_gaye_hackathon/screen/buyer_seller/add_post.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,8 +10,9 @@ class ItemList extends StatelessWidget {
     _stream = _reference.snapshots();
   }
 
-  CollectionReference _reference =
-      FirebaseFirestore.instance.collection('shopping_list');
+  final Query<Map<String, dynamic>> _reference = FirebaseFirestore.instance
+      .collection('items')
+      .orderBy('timestamp', descending: true);
 
   //_reference.get()  ---> returns Future<QuerySnapshot>
   //_reference.snapshots()--> Stream<QuerySnapshot> -- realtime updates
@@ -110,7 +112,7 @@ class ItemList extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
                                       Icon(
-                                        Icons.whatsapp,
+                                        FontAwesomeIcons.whatsapp,
                                         color: Color.fromARGB(255, 4, 241, 12),
                                         size: 28,
                                       ),

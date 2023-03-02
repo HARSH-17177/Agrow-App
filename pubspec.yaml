@@ -46,6 +46,7 @@ dependencies:
   email_validator:
   fluttertoast:
   url_launcher:
+  font_awesome_flutter: 
   
 
 dev_dependencies:
