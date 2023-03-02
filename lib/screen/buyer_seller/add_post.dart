@@ -149,8 +149,9 @@ class _AddItemState extends State<AddItem> {
 
                       //Add a new item
                       _reference.add(dataToSend);
-
-                      Navigator.pop(context);
+                      if (imageUrl.isNotEmpty) {
+                        Navigator.pop(context);
+                      }
                     }
                   },
                   child: const Text('Submit')),
