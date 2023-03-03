@@ -6,14 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class AddItem extends StatefulWidget {
-  const AddItem({Key? key}) : super(key: key);
+class BorrowAdd extends StatefulWidget {
+  const BorrowAdd({Key? key}) : super(key: key);
 
   @override
-  State<AddItem> createState() => _AddItemState();
+  State<BorrowAdd> createState() => _BorrowAddState();
 }
 
-class _AddItemState extends State<AddItem> {
+class _BorrowAddState extends State<BorrowAdd> {
   bool loading = false;
   final user = FirebaseAuth.instance.currentUser!.email.toString();
 
@@ -24,7 +24,7 @@ class _AddItemState extends State<AddItem> {
   GlobalKey<FormState> key = GlobalKey();
 
   final CollectionReference _reference =
-      FirebaseFirestore.instance.collection('items');
+      FirebaseFirestore.instance.collection('borrow');
 
   String imageUrl = '';
 
@@ -32,7 +32,7 @@ class _AddItemState extends State<AddItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sell and Buy'),
+        title: const Text('Borrow or Lend'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -43,10 +43,10 @@ class _AddItemState extends State<AddItem> {
               TextFormField(
                 controller: _controllerName,
                 decoration:
-                    const InputDecoration(hintText: 'Enter Post Headline'),
+                    const InputDecoration(hintText: 'Enter the Equipment name'),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please Enter Post Headline';
+                    return 'Please Enter Equipment name';
                   }
 
                   return null;
@@ -66,8 +66,8 @@ class _AddItemState extends State<AddItem> {
               ),
               TextFormField(
                 controller: _controllerUrl,
-                decoration:
-                    const InputDecoration(hintText: 'Enter your whatappurl'),
+                decoration: const InputDecoration(
+                    hintText: 'Enter your whatapp number'),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please Enter the whatsAppUrl';
@@ -98,14 +98,15 @@ class _AddItemState extends State<AddItem> {
                     print('${file?.path}');
 
                     if (file == null) return;
-
+                    String uniqueFileName =
+                        DateTime.now().microsecondsSinceEpoch.toString();
                     Reference referenceRoot = FirebaseStorage.instance.ref();
                     Reference referenceDirImages =
                         referenceRoot.child('images');
 
                     //Create a reference for the image to be stored
                     Reference referenceImageToUpload =
-                        referenceDirImages.child('name');
+                        referenceDirImages.child(uniqueFileName);
                     if (imageUrl.isEmpty) {
                       setState(() {
                         loading = true;

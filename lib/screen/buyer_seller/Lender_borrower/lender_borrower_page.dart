@@ -1,28 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jit_gaye_hackathon/screen/buyer_seller/add_post.dart';
+import 'package:jit_gaye_hackathon/screen/buyer_seller/Lender_borrower/add_borrow_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ItemList extends StatelessWidget {
-  ItemList({Key? key}) : super(key: key) {
+class LenderBorrower extends StatelessWidget {
+  LenderBorrower({Key? key}) : super(key: key) {
     _stream = _reference.snapshots();
   }
 
   final Query<Map<String, dynamic>> _reference = FirebaseFirestore.instance
-      .collection('items')
+      .collection('borrow')
       .orderBy('timestamp', descending: true);
 
-  //_reference.get()  ---> returns Future<QuerySnapshot>
-  //_reference.snapshots()--> Stream<QuerySnapshot> -- realtime updates
   late Stream<QuerySnapshot> _stream;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Items'),
+        title: const Text('Borrow or Lend'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _stream,
@@ -54,8 +51,8 @@ class ItemList extends StatelessWidget {
                     children: [
                       Card(
                         elevation: 10,
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
+                        shadowColor: Colors.brown,
+                        color: Colors.brown,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Text('${thisItem['user']}',
@@ -67,8 +64,8 @@ class ItemList extends StatelessWidget {
                       ),
                       Card(
                         elevation: 10,
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
+                        shadowColor: Colors.brown,
+                        color: Colors.brown,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Image.network('${thisItem['image']}'),
@@ -76,8 +73,8 @@ class ItemList extends StatelessWidget {
                       ),
                       Card(
                           elevation: 10,
-                          shadowColor: Colors.greenAccent,
-                          color: Colors.green,
+                          shadowColor: Colors.brown,
+                          color: Colors.brown,
                           child: Column(
                             children: [
                               Padding(
@@ -152,7 +149,7 @@ class ItemList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const AddItem()));
+              .push(MaterialPageRoute(builder: (context) => const BorrowAdd()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
